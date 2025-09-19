@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Blog - Jim Technologies</title>
+    <style>
+        /* Portfolio gallery grid styles */
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        #myBtnContainer {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .btn {
+            border: none;
+            outline: none;
+            padding: 12px 16px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            margin: 0 4px;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #ddd;
+        }
+        
+        .btn.active {
+            background-color: #666;
+            color: white;
+        }
+        
+        .row {
+            margin: 8px -16px;
+        }
+        
+        .column {
+            float: left;
+            width: 33.33%;
+            display: none;
+            padding: 0 8px;
+        }
+        
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        .content {
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            transform: scale(1);
+        }
+        
+        .content:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+        
+        .content img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+        }
+        
+        .modal-close:hover {
+            color: #000;
+        }
+        
+        .modal-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .modal-title {
+            color: #333;
+            margin: 0 0 15px 0;
+            font-size: 24px;
+        }
+        
+        .modal-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-content-text {
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .modal-content-text h3 {
+            color: #333;
+            margin: 20px 0 10px 0;
+        }
+        
+        .clickable-card {
+            cursor: pointer;
+        }
+        
+        .clickable-card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            transform: scale(1.02);
+        }
+        
+        .content h4 {
+            margin: 15px 0 10px 0;
+            color: #333;
+        }
+        
+        .content p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        /* Header styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        #brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        #brand a {
+            text-decoration: none;
+            color: #333;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #007bff;
+        }
+        
+        #hamburger-icon {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .mobile-menu {
+            display: none;
+        }
+        
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .column {
+                width: 50%;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            #hamburger-icon {
+                display: flex;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- MAIN (Center website) -->
+    <div class="main"> 
+        <header>
+            <div id="brand"><a href="index.html">JimTechnologies <i class="uil uil-circuit"></i></a></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#" onclick="location.reload()">Refresh</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                </ul>
+            </nav>
+            
+            <div id="hamburger-icon" onclick="toggleMobileMenu(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+
+            <ul class="mobile-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#" onclick="location.reload()">Refresh</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+        </header>
+
+        <!-- Filter buttons -->
+        <div id="myBtnContainer">
+            <button class="btn active" onclick="filterSelection('all')">All</button>
+            <button class="btn" onclick="filterSelection('softwares')">Softwares</button>
+            <button class="btn" onclick="filterSelection('it-solutions')">IT Solutions</button>
+        </div>
+        
+        <!-- Portfolio Gallery Grid -->
+        <div class="row">
+            <div class="column softwares">
+                <div class="content clickable-card" onclick="openModal('modal1')">
+                    <img src="portfolio work.png" alt="RODELIGHTS Bakery Website" style="width:100%">
+                    <h4>RODELIGHTS: Building a Modern Bakery Website</h4>
+                    <p>Dive into my journey of creating a comprehensive website for a local bakery. Click to view full project details and images.</p>
+                </div>
+            </div>
+
+            <div class="column it-solutions">
+                <div class="content clickable-card" onclick="openModal('modal2')">
+                    <img src="jimmy.jpeg" alt="IT Support Journey" style="width:100%">
+                    <h4>My Google IT Support Certification Journey</h4>
+                    <p>Discover my path through the Google IT Support Professional Certificate program. Click to view full journey details and images.</p>
+                </div>
+            </div>
+
+            <div class="column softwares">
+                <div class="content clickable-card" onclick="openModal('modal3')">
+                    <img src="agriexpert1.png" alt="Expert System" style="width:100%">
+                    <h4>Agriexpert System</h4>
+                    <p>A rule-based expert system for agricultural guidance to smallholder farmers in Kenya. Click to view full project details and system screenshots.</p>
+                </div>
+            </div>
+
+            <!-- CCTV AI System -->
+            <div class="column softwares">
+                <div class="content clickable-card" onclick="openModal('modal4')">
+                    <img src="cctv-a-s.PNG" alt="CCTV AI System" style="width:100%">
+                    <h4>CCTV AI System</h4>
+                    <p>A cutting-edge, AI-powered security monitoring system that transforms traditional CCTV surveillance into intelligent, automated security solution. Click to view full project details and system screenshots.</p>
+                </div>
+            </div>
+
+            <div class="column it-solutions">
+                <div class="content">
+                    <img src="img/placeholder2.jpg" alt="IT Solutions Placeholder" style="width:100%">
+                    <h4>Future IT Solutions Project</h4>
+                    <p>This is a placeholder for an upcoming IT solutions project. Future content will include networking, system administration, and technical support innovations.</p>
+                </div>
+            </div>
+
+            <div class="column softwares">
+                <div class="content">
+                    <img src="img/placeholder3.jpg" alt="Software Project Placeholder" style="width:100%">
+                    <h4>Future Software Project 2</h4>
+                    <p>This is a placeholder for another upcoming software development project. Expect to see cutting-edge programming techniques and modern development practices.</p>
+                </div>
+            </div>
+        </div>
+
+    <!-- END MAIN-->
+    </div>
+
+    <!-- Modals -->
+    <!-- Modal 1: RODELIGHTS -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal1')">&times;</span>
+            <h2 class="modal-title">RODELIGHTS: Building a Modern Bakery Website</h2>
+            <div class="modal-meta">December 2023 • Software Development • HTML, CSS, JavaScript</div>
+            
+            <div class="modal-images">
+                <img src="portfolio work.png" alt="RODELIGHTS Homepage" class="modal-image" onclick="viewFullImage('portfolio work.png')">
+                <img src="portfolio work.png" alt="RODELIGHTS Features" class="modal-image" onclick="viewFullImage('jimmy.jpeg')">
+                <img src="portfolio work.png" alt="RODELIGHTS Mobile View" class="modal-image" onclick="viewFullImage('jymoh.jpeg')">
+            </div>
+            
+            <div class="modal-content-text">
+                <h3>Project Overview</h3>
+                <p>RODELIGHTS represents my first major web development project - a comprehensive website for a local bakery business. This project challenged me to apply modern web development practices while creating a user-friendly, visually appealing, and functional website that serves both customers and business needs.</p>
+                
+                <h3>Technologies Used</h3>
+                <ul>
+                    <li><strong>HTML5:</strong> Semantic markup and modern HTML features for accessibility and SEO</li>
+                    <li><strong>CSS3:</strong> Advanced styling with Flexbox and Grid layouts, custom animations, and responsive design</li>
+                    <li><strong>Vanilla JavaScript:</strong> Interactive elements, form validation, and dynamic content management</li>
+                    <li><strong>Responsive Design:</strong> Mobile-first approach ensuring optimal viewing across all devices</li>
+                </ul>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li>Interactive product catalog with detailed descriptions and pricing</li>
+                    <li>Online ordering system with cart functionality</li>
+                    <li>Contact forms with JavaScript validation</li>
+                    <li>Image galleries showcasing bakery products</li>
+                    <li>Mobile-responsive navigation and layout</li>
+                    <li>Social media integration for customer engagement</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: IT Support -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal2')">&times;</span>
+            <h2 class="modal-title">My Google IT Support Certification Journey</h2>
+            <div class="modal-meta">October 2022 • IT Solutions • Networking, Troubleshooting</div>
+            
+            <div class="modal-images">
+                <img src="jimmy.jpeg" alt="IT Support Certificate" class="modal-image" onclick="viewFullImage('jimmy.jpeg')">
+                <img src="cert.google.PNG" alt="Learning Process" class="modal-image" onclick="viewFullImage('cert.google.PNG')">
+                <img src="linux.PNG" alt="Technical Skills" class="modal-image" onclick="viewFullImage('linux.PNG')">
+            </div>
+            
+            <div class="modal-content-text">
+                <h3>Why I Chose IT Support</h3>
+                <p>My journey into IT support began with a genuine passion for helping people solve technical problems. The Google IT Support Professional Certificate program offered a structured path to develop both technical skills and the soft skills necessary for effective customer service in the technology sector.</p>
+                
+                <h3>Course Structure and Learning Path</h3>
+                <ul>
+                    <li><strong>Technical Support Fundamentals:</strong> Understanding customer service, troubleshooting methodology, and IT basics</li>
+                    <li><strong>Computer Networking:</strong> TCP/IP, DNS, DHCP, and network troubleshooting techniques</li>
+                    <li><strong>Operating Systems:</strong> Windows and Linux administration, file systems, and process management</li>
+                    <li><strong>System Administration:</strong> Directory services, centralized management, and data backup strategies</li>
+                    <li><strong>IT Security:</strong> Cybersecurity fundamentals, risk assessment, and security protocols</li>
+                </ul>
+                
+                <h3>Real-World Applications</h3>
+                <ul>
+                    <li>Set up and maintain local networks for small businesses</li>
+                    <li>Provide technical support to fellow students and family members</li>
+                    <li>Implement security best practices in personal and academic projects</li>
+                    <li>Troubleshoot complex system issues using systematic approaches</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Agriexpert -->
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal3')">&times;</span>
+            <h2 class="modal-title">Agriexpert System</h2>
+            <div class="modal-meta">2023 • Software Development • Expert System, Agricultural Technology</div>
+            
+            <div class="modal-images">
+                <img src="agriexpert1.png" alt="Expert System Interface" class="modal-image" onclick="viewFullImage('agriexpert1.png')">
+                <img src="agriexpert 2.png" alt="Expert System Features" class="modal-image" onclick="viewFullImage('agriexpert 2.png')">
+                <img src="agriexpert3.png" alt="Expert System Dashboard" class="modal-image" onclick="viewFullImage('agriexpert3.png')">
+            </div>
+            
+            <div class="modal-content-text">
+                <h3>Project Overview</h3>
+                <p>Agriexpert is a rule-based expert system developed as part of a BscIT coursework group project. The system is designed to deliver sustainable and personalized agricultural guidance to smallholder farmers in Kenya, helping them make informed decisions about their farming practices.</p>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li>Rule-based decision making for agricultural recommendations</li>
+                    <li>Crop selection guidance based on soil conditions and climate</li>
+                    <li>Pest and disease identification and treatment recommendations</li>
+                    <li>Fertilizer and irrigation scheduling assistance</li>
+                    <li>Seasonal planning and crop rotation advice</li>
+                </ul>
+                
+                <h3>Technology Stack</h3>
+                <ul>
+                    <li>Expert system development framework</li>
+                    <li>Knowledge base management system</li>
+                    <li>User interface for farmer interactions</li>
+                    <li>Database for storing agricultural knowledge and user data</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4: CCTV AI System -->
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal4')">&times;</span>
+            <h2 class="modal-title">CCTV AI System</h2>
+            <div class="modal-meta">2024 • Software Development • Python, Computer Vision, AI</div>
+            
+            <div class="modal-images">
+                <img src="cctv-a-s.PNG" alt="CCTV AI System Interface" class="modal-image" onclick="viewFullImage('cctv-a-s.PNG')">
+                <img src="cctv2.PNG" alt="Face Detection Feature" class="modal-image" onclick="viewFullImage('cctv-detection.PNG')">
+                <img src="cctv3.jpg" alt="Mobile Alert System" class="modal-image" onclick="viewFullImage('cctv-alerts.PNG')">
+                
+            
+            <div class="modal-content-text">
+                <h3>Project Overview</h3>
+                <p>The CCTV AI System is a cutting-edge, AI-powered security monitoring solution that transforms traditional CCTV surveillance into an intelligent, automated security system. Built with Python and modern computer vision technologies, this system provides real-time face detection, personnel recognition, and instant mobile alerts for comprehensive security management.</p>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Real-time Face Detection:</strong> Advanced computer vision algorithms for accurate face recognition</li>
+                    <li><strong>Personnel Recognition:</strong> Identify authorized and unauthorized personnel automatically</li>
+                    <li><strong>Instant Mobile Alerts:</strong> Real-time notifications sent to security personnel</li>
+                    <li><strong>Motion Detection:</strong> Intelligent motion sensing with false alarm reduction</li>
+                    <li><strong>Multi-Camera Support:</strong> Monitor multiple camera feeds simultaneously</li>
+                    <li><strong>Database Integration:</strong> Store and manage personnel records and security logs</li>
+                </ul>
+                
+                <h3>Technology Stack</h3>
+                <ul>
+                    <li><strong>Python:</strong> Core programming language for system development</li>
+                    <li><strong>OpenCV:</strong> Computer vision library for image processing and face detection</li>
+                    <li><strong>TensorFlow/PyTorch:</strong> Machine learning frameworks for AI model training</li>
+                    <li><strong>Flask/Django:</strong> Web framework for system interface and API</li>
+                    <li><strong>SMS/Email APIs:</strong> Integration for instant alert notifications</li>
+                </ul>
+                
+                <h3>Security Applications</h3>
+                <ul>
+                    <li>Corporate office building security monitoring</li>
+                    <li>Residential compound access control</li>
+                    <li>Retail store theft prevention and monitoring</li>
+                    <li>Industrial facility perimeter security</li>
+                    <li>Educational institution safety management</li>
+                </ul>
+                
+                <h3>System Capabilities</h3>
+                <ul>
+                    <li>24/7 automated surveillance with minimal human intervention</li>
+                    <li>High accuracy face recognition with low false positive rates</li>
+                    <li>Scalable architecture supporting multiple locations</li>
+                    <li>User-friendly web interface for security management</li>
+                    <li>Comprehensive logging and reporting features</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        filterSelection("all");
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("column");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+                w3RemoveClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+            }
+        }
+
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) {
+                    element.className += " " + arr2[i];
+                }
+            }
+        }
+
+        function w3RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+
+        // Add active class to the current button (highlight it)
+        var btnContainer = document.getElementById("myBtnContainer");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function() {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+
+        function toggleMobileMenu(icon) {
+            icon.classList.toggle("active");
+        }
+        
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+            document.body.style.overflow = "hidden"; // Prevent background scrolling
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+            document.body.style.overflow = "auto"; // Restore scrolling
+        }
+        
+        function viewFullImage(imageSrc) {
+            // Create full-screen image viewer
+            const imageViewer = document.createElement('div');
+            imageViewer.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                z-index: 2000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            `;
+            
+            const fullImage = document.createElement('img');
+            fullImage.src = imageSrc;
+            fullImage.style.cssText = `
+                max-width: 90%;
+                max-height: 90%;
+                object-fit: contain;
+                border-radius: 10px;
+            `;
+            
+            imageViewer.appendChild(fullImage);
+            document.body.appendChild(imageViewer);
+            
+            // Close on click
+            imageViewer.onclick = function() {
+                document.body.removeChild(imageViewer);
+            };
+        }
+        
+        // Close modal when clicking outside of modal content
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        };
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>

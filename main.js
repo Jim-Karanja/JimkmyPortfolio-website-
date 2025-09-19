@@ -94,9 +94,9 @@ function scrollActive(){
         sectionId = current.getAttribute('id')
 
         if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
+            document.querySelector('.nav_menu a[href*=' + sectionId + ']').classList.add('active-link')
         }else{
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
+            document.querySelector('.nav_menu a[href*=' + sectionId + ']').classList.remove('active-link')
         }
     })
 }
@@ -147,4 +147,29 @@ themeButton.addEventListener('click', () => {
     // We save the theme and the current icon that the user chose
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
+})
+
+/*==================== BLOG CATEGORY FILTERING ====================*/
+const categoryButtons = document.querySelectorAll('.blog__category-btn')
+const blogPosts = document.querySelectorAll('[data-category]')
+
+function filterBlogPosts() {
+    const selectedCategory = this.dataset.category
+    
+    // Update active button
+    categoryButtons.forEach(btn => btn.classList.remove('blog__category-active'))
+    this.classList.add('blog__category-active')
+    
+    // Filter posts
+    blogPosts.forEach(post => {
+        if (selectedCategory === 'all' || post.dataset.category === selectedCategory) {
+            post.classList.remove('hidden')
+        } else {
+            post.classList.add('hidden')
+        }
+    })
+}
+
+categoryButtons.forEach(btn => {
+    btn.addEventListener('click', filterBlogPosts)
 })
