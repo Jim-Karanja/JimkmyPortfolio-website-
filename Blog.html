@@ -295,7 +295,16 @@
         </div>
         
         <!-- Portfolio Gallery Grid -->
-        
+
+        <!-- CCTV AI System -->
+            <div class="column softwares">
+                <div class="content clickable-card" onclick="openModal('modal4')">
+                    <img src="cctv-a-s.PNG" alt="CCTV AI System" style="width:100%">
+                    <h4>CCTV AI System</h4>
+                    <p>A cutting-edge, AI-powered security monitoring system that transforms traditional CCTV surveillance into intelligent, automated security solution. Click to view full project details and system screenshots.</p>
+                </div>
+            </div>
+
 
             <div class="column softwares">
                 <div class="content clickable-card" onclick="openModal('modal3')">
@@ -305,15 +314,7 @@
                 </div>
             </div>
 
-            <!-- CCTV AI System -->
-            <div class="column softwares">
-                <div class="content clickable-card" onclick="openModal('modal4')">
-                    <img src="cctv-a-s.PNG" alt="CCTV AI System" style="width:100%">
-                    <h4>CCTV AI System</h4>
-                    <p>A cutting-edge, AI-powered security monitoring system that transforms traditional CCTV surveillance into intelligent, automated security solution. Click to view full project details and system screenshots.</p>
-                </div>
-            </div>
-
+            
             <div class="column it-solutions">
                 <div class="content">
                     <img src="img/placeholder2.jpg" alt="IT Solutions Placeholder" style="width:100%">
@@ -333,44 +334,6 @@
 
     <!-- END MAIN-->
     </div>
-
-    <!-- Modal 1: Agriexpert -->
-    <div id="modal3" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('modal3')">&times;</span>
-            <h2 class="modal-title">Agriexpert System</h2>
-            <div class="modal-meta">2023 • Software Development • Expert System, Agricultural Technology</div>
-            
-            <div class="modal-images">
-                <img src="agriexpert1.png" alt="Expert System Interface" class="modal-image" onclick="viewFullImage('agriexpert1.png')">
-                <img src="agriexpert 2.png" alt="Expert System Features" class="modal-image" onclick="viewFullImage('agriexpert 2.png')">
-                <img src="agriexpert3.png" alt="Expert System Dashboard" class="modal-image" onclick="viewFullImage('agriexpert3.png')">
-            </div>
-            
-            <div class="modal-content-text">
-                <h3>Project Overview</h3>
-                <p>Agriexpert is a rule-based expert system developed as part of a BscIT coursework group project. The system is designed to deliver sustainable and personalized agricultural guidance to smallholder farmers in Kenya, helping them make informed decisions about their farming practices.</p>
-                
-                <h3>Key Features</h3>
-                <ul>
-                    <li>Rule-based decision making for agricultural recommendations</li>
-                    <li>Crop selection guidance based on soil conditions and climate</li>
-                    <li>Pest and disease identification and treatment recommendations</li>
-                    <li>Fertilizer and irrigation scheduling assistance</li>
-                    <li>Seasonal planning and crop rotation advice</li>
-                </ul>
-                
-                <h3>Technology Stack</h3>
-                <ul>
-                    <li>Expert system development framework</li>
-                    <li>Knowledge base management system</li>
-                    <li>User interface for farmer interactions</li>
-                    <li>Database for storing agricultural knowledge and user data</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
     <!-- Modal 4: CCTV AI System -->
     <div id="modal4" class="modal">
         <div class="modal-content">
@@ -428,6 +391,45 @@
         </div>
     </div>
 
+
+    <!-- Modal 1: Agriexpert -->
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal3')">&times;</span>
+            <h2 class="modal-title">Agriexpert System</h2>
+            <div class="modal-meta">2023 • Software Development • Expert System, Agricultural Technology</div>
+            
+            <div class="modal-images">
+                <img src="agriexpert1.png" alt="Expert System Interface" class="modal-image" onclick="viewFullImage('agriexpert1.png')">
+                <img src="agriexpert 2.png" alt="Expert System Features" class="modal-image" onclick="viewFullImage('agriexpert 2.png')">
+                <img src="agriexpert3.png" alt="Expert System Dashboard" class="modal-image" onclick="viewFullImage('agriexpert3.png')">
+            </div>
+            
+            <div class="modal-content-text">
+                <h3>Project Overview</h3>
+                <p>Agriexpert is a rule-based expert system developed as part of a BscIT coursework group project. The system is designed to deliver sustainable and personalized agricultural guidance to smallholder farmers in Kenya, helping them make informed decisions about their farming practices.</p>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li>Rule-based decision making for agricultural recommendations</li>
+                    <li>Crop selection guidance based on soil conditions and climate</li>
+                    <li>Pest and disease identification and treatment recommendations</li>
+                    <li>Fertilizer and irrigation scheduling assistance</li>
+                    <li>Seasonal planning and crop rotation advice</li>
+                </ul>
+                
+                <h3>Technology Stack</h3>
+                <ul>
+                    <li>Expert system development framework</li>
+                    <li>Knowledge base management system</li>
+                    <li>User interface for farmer interactions</li>
+                    <li>Database for storing agricultural knowledge and user data</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
     <script>
         filterSelection("all");
         function filterSelection(c) {
