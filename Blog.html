@@ -2,338 +2,229 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="style.css">
     <title>Blog - Jim Technologies</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap">
     <style>
-        /* Portfolio gallery grid styles */
-        .main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+        :root {
+            --hue-color: 240;
+            --first-color: hsl(var(--hue-color), 92%, 28%);
+            --first-color-second: hsl(var(--hue-color), 42%, 34%);
+            --first-color-alt: hsl(var(--hue-color), 57%, 53%);
+            --first-color-lighter: hsl(var(--hue-color), 92%, 85%);
+            --title-color: hsl(var(--hue-color), 8%, 15%);
+            --text-color: hsl(var(--hue-color), 8%, 45%);
+            --text-color-light: hsl(var(--hue-color), 92%, 52%);
+            --input-color: hsl(var(--hue-color), 70%, 96%);
+            --body-color: hsl(var(--hue-color), 60%, 99%);
+            --container-color: #f1e8fc;
+            --scroll-bar-color: hsl(var(--hue-color), 12%, 90%);
+            --scroll-thumb-color: hsl(var(--hue-color), 12%, 80%);
+            --body-font: 'Space Grotesk', sans-serif;
+            --header-height: 3rem;
+            --z-tooltip: 10;
+            --z-fixed: 100;
+            --z-modal: 1000;
+            --big-font-size: 2rem;
+            --h1-font-size: 1.5rem;
+            --h2-font-size: 1.25rem;
+            --h3-font-size: 1.125rem;
+            --normal-font-size: .938rem;
+            --small-font-size: .813rem;
+            --smaller-font-size: .75rem;
+            --font-medium: 600;
+            --font-semi-bold: 750;
         }
-        
-        #myBtnContainer {
-            text-align: center;
-            margin: 2rem 0;
+
+        @media screen and (min-width: 968px) {
+            :root {
+                --big-font-size: 3rem;
+                --h1-font-size: 2.25rem;
+                --h2-font-size: 1.5rem;
+                --h3-font-size: 1.25rem;
+                --normal-font-size: 1rem;
+                --small-font-size: .875rem;
+                --smaller-font-size: .813rem;
+            }
         }
-        
-        .btn {
-            border: none;
-            outline: none;
-            padding: 12px 16px;
-            background-color: #f1f1f1;
-            cursor: pointer;
-            margin: 0 4px;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #ddd;
-        }
-        
-        .btn.active {
-            background-color: #666;
-            color: white;
-        }
-        
-        .row {
-            margin: 8px -16px;
-        }
-        
-        .column {
-            float: left;
-            width: 33.33%;
-            display: none;
-            padding: 0 8px;
-        }
-        
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-        
-        .content {
-            background-color: white;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            margin-bottom: 16px;
-            transition: all 0.3s ease;
-            transform: scale(1);
-        }
-        
-        .content:hover {
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-            transform: scale(1.05);
-            cursor: pointer;
-        }
-        
-        .content img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-        
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            overflow-y: auto;
-        }
-        
-        .modal-content {
-            background-color: white;
-            margin: 2% auto;
-            padding: 20px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 800px;
-            position: relative;
-            animation: modalSlideIn 0.3s ease;
-        }
-        
-        @keyframes modalSlideIn {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .modal-close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            position: absolute;
-            right: 15px;
-            top: 10px;
-        }
-        
-        .modal-close:hover {
-            color: #000;
-        }
-        
-        .modal-images {
+
+        * { box-sizing: border-box; padding: 0; margin: 0; }
+        html { scroll-behavior: smooth; }
+        body { margin: var(--header-height) 0 0 0; font-family: var(--body-font); background-color: var(--body-color); color: var(--text-color); }
+        h1, h2, h3, h4 { color: var(--title-color); font-weight: var(--font-semi-bold); }
+        ul { list-style: none; }
+        a { text-decoration: none; }
+        img { max-width: 100%; height: auto; }
+
+        /* HEADER */
+        .header { width: 100%; position: fixed; top: 0; left: 0; z-index: var(--z-fixed); background-color: var(--body-color); border-bottom: 1px solid var(--first-color-lighter); }
+        .nav { max-width: 968px; height: calc(var(--header-height) + 1.5rem); display: flex; justify-content: space-between; align-items: center; margin: 0 auto; padding: 0 1rem; }
+        .nav_logo { color: var(--title-color); font-weight: var(--font-medium); font-size: var(--h2-font-size); }
+        .nav_list { display: flex; column-gap: 2rem; }
+        .nav_link { display: flex; flex-direction: column; align-items: center; font-size: var(--small-font-size); color: var(--title-color); }
+        .nav_link:hover { color: var(--first-color); }
+
+        /* PORTFOLIO LAYOUT */
+        .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .section__title { text-align: center; margin-bottom: 0.5rem; }
+        .section__subtitle { display: block; text-align: center; margin-bottom: 1rem; color: var(--first-color); }
+        .section__description { text-align: center; max-width: 800px; margin: 0 auto 2rem; }
+
+        #myBtnContainer { text-align: center; margin-bottom: 3rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .btn { border: 2px solid var(--first-color-lighter); padding: 12px 16px; background-color: var(--container-color); cursor: pointer; border-radius: 2rem; transition: 0.3s; font-family: var(--body-font); }
+        .btn.active, .btn:hover { background-color: var(--first-color); color: white; border-color: var(--first-color); }
+
+        .portfolio__container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .modal-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .modal-image:hover {
-            transform: scale(1.05);
-        }
-        
-        .modal-title {
-            color: #333;
-            margin: 0 0 15px 0;
-            font-size: 24px;
-        }
-        
-        .modal-meta {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        
-        .modal-content-text {
-            line-height: 1.6;
-            color: #555;
-        }
-        
-        .modal-content-text h3 {
-            color: #333;
-            margin: 20px 0 10px 0;
-        }
-        
-        .clickable-card {
-            cursor: pointer;
-        }
-        
-        .clickable-card:hover {
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-            transform: scale(1.02);
-        }
-        
-        .content h4 {
-            margin: 15px 0 10px 0;
-            color: #333;
-        }
-        
-        .content p {
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        .show {
-            display: block;
-        }
-        
-        /* Header styles */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-        
-        #brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        
-        #brand a {
-            text-decoration: none;
-            color: #333;
-        }
-        
-        nav ul {
-            list-style: none;
-            display: flex;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
-            margin: 0;
-            padding: 0;
         }
-        
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav a:hover {
-            color: #007bff;
-        }
-        
-        #hamburger-icon {
-            display: none;
+
+        .column { display: none; } /* Script handles display */
+        .show { display: block; }
+
+        .content {
+            background-color: var(--container-color);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            height: 100%;
+            display: flex;
             flex-direction: column;
             cursor: pointer;
         }
-        
-        .mobile-menu {
-            display: none;
-        }
-        
-        /* Responsive */
-        @media screen and (max-width: 768px) {
-            .column {
-                width: 50%;
-            }
-            
-            nav ul {
-                display: none;
-            }
-            
-            #hamburger-icon {
-                display: flex;
-            }
-        }
-        
-        @media screen and (max-width: 480px) {
-            .column {
-                width: 100%;
-            }
-        }
+        .content:hover { transform: translateY(-5px); border-color: var(--first-color-lighter); }
+        .content img { width: 100%; height: 200px; object-fit: cover; border-radius: 0.75rem; margin-bottom: 1rem; }
+        .content h4 { margin-bottom: 0.75rem; }
+        .content p { flex-grow: 1; line-height: 1.6; }
+
+        /* MODALS */
+        .modal { display: none; position: fixed; z-index: var(--z-modal); left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); overflow-y: auto; backdrop-filter: blur(5px); }
+        .modal-content { background-color: var(--body-color); margin: 2% auto; padding: 2.5rem; border-radius: 1rem; width: 90%; max-width: 900px; position: relative; border: 1px solid var(--first-color-lighter); animation: modalSlideIn 0.4s ease; }
+        @keyframes modalSlideIn { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-close { position: absolute; right: 1.5rem; top: 1.5rem; font-size: 2rem; cursor: pointer; color: var(--text-color-light); }
+        .modal-title { font-size: var(--h1-font-size); margin-bottom: 0.5rem; }
+        .modal-meta { color: var(--first-color); background-color: var(--first-color-lighter); padding: 0.4rem 1rem; border-radius: 2rem; font-size: var(--small-font-size); display: inline-block; margin-bottom: 1.5rem; }
+        .modal-images { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+        .modal-image { width: 100%; height: 180px; object-fit: cover; border-radius: 0.5rem; cursor: pointer; }
+        .modal-content-text h3 { margin: 1.5rem 0 0.75rem; font-size: var(--h3-font-size); color: var(--first-color); position: relative; }
+        .modal-content-text h3::after { content: ''; display: block; width: 50px; height: 3px; background: var(--first-color); margin-top: 5px; border-radius: 2px; }
+        .modal-content-text p, .modal-content-text li { line-height: 1.6; margin-bottom: 0.8rem; }
+        .modal-content-text ul { padding-left: 1.2rem; list-style: disc; }
+
+        .footer__bg { background-color: var(--first-color-second); padding: 3rem 0; color: white; text-align: center; margin-top: 4rem; }
+        .scrollup { position: fixed; right: 1rem; bottom: -20%; background-color: var(--first-color); padding: 0.5rem; border-radius: 0.4rem; transition: 0.4s; z-index: var(--z-tooltip); }
+        .show-scroll { bottom: 5rem; }
+        .scrollup__icon { color: white; font-size: 1.5rem; }
     </style>
 </head>
 <body>
-    <!-- MAIN (Center website) -->
-    <div class="main"> 
-        <header>
-            <div id="brand"><a href="index.html">JimTechnologies <i class="uil uil-circuit"></i></a></div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="#" onclick="location.reload()">Refresh</a></li>
-                    <li><a href="index.html#about">About</a></li>
-                </ul>
-            </nav>
-            
-            <div id="hamburger-icon" onclick="toggleMobileMenu(this)">
-                <div class="bar1"></div>
-                <div class="bar2"></div>
-                <div class="bar3"></div>
-            </div>
-
-            <ul class="mobile-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#" onclick="location.reload()">Refresh</a></li>
-                <li><a href="index.html#about">About</a></li>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="nav_logo">JimTechnologies <i class="uil uil-circuit"></i></a>
+            <ul class="nav_list">
+                <li><a href="index.html" class="nav_link"><i class="uil uil-estate"></i> Home</a></li>
+                <li><a href="index.html#about" class="nav_link"><i class="uil uil-user-circle"></i> About</a></li>
             </ul>
-        </header>
+        </nav>
+    </header>
 
-        <!-- Filter buttons -->
-        <div id="myBtnContainer">
-            <button class="btn active" onclick="filterSelection('all')">All</button>
-            <button class="btn" onclick="filterSelection('softwares')">Softwares</button>
-            <button class="btn" onclick="filterSelection('it-solutions')">IT Solutions</button>
-        </div>
-        
-        <!-- Portfolio Gallery Grid -->
+    <main class="main">
+        <section class="portfolio">
+            <h2 class="section__title">My Projects</h2>
+            <span class="section__subtitle">Explore my portfolio</span>
+            <p class="section__description">Discover the innovative solutions and technologies I've developed. Click on any project to learn more about the implementation, features, and technologies used.</p>
 
-        <!-- CCTV AI System -->
-            <div class="column softwares">
-                <div class="content clickable-card" onclick="openModal('modal4')">
-                    <img src="cctv-a-s.PNG" alt="CCTV AI System" style="width:100%">
-                    <h4>CCTV AI System</h4>
-                    <p>A cutting-edge, AI-powered security monitoring system that transforms traditional CCTV surveillance into intelligent, automated security solution. Click to view full project details and system screenshots.</p>
-                </div>
+            <div id="myBtnContainer">
+                <button class="btn active" onclick="filterSelection('all')">All</button>
+                <button class="btn" onclick="filterSelection('softwares')">Software</button>
+                <button class="btn" onclick="filterSelection('it-solutions')">IT Solutions</button>
             </div>
 
-
-            <div class="column softwares">
-                <div class="content clickable-card" onclick="openModal('modal3')">
-                    <img src="agriexpert1.png" alt="Expert System" style="width:100%">
-                    <h4>Agriexpert System</h4>
-                    <p>A rule-based expert system for agricultural guidance to smallholder farmers in Kenya. Click to view full project details and system screenshots.</p>
+            <div class="portfolio__container">
+                <div class="column softwares">
+                    <div class="content" onclick="openModal('modal4')">
+                        <img src="cctv-a-s.PNG" alt="CCTV AI">
+                        <h4>CCTV AI System</h4>
+                        <p>A cutting-edge, AI-powered security monitoring system that transforms traditional CCTV surveillance into an intelligent solution.</p>
+                    </div>
                 </div>
-            </div>
 
-            
-            <div class="column it-solutions">
-                <div class="content">
-                    <img src="img/placeholder2.jpg" alt="IT Solutions Placeholder" style="width:100%">
-                    <h4>Future IT Solutions Project</h4>
-                    <p>This is a placeholder for an upcoming IT solutions project. Future content will include networking, system administration, and technical support innovations.</p>
+                <div class="column softwares">
+                    <div class="content" onclick="openModal('modal3')">
+                        <img src="agriexpert1.png" alt="Agriexpert">
+                        <h4>Agriexpert System</h4>
+                        <p>A rule-based expert system providing agricultural guidance to smallholder farmers in Kenya.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="column softwares">
-                <div class="content">
-                    <img src="img/placeholder3.jpg" alt="Software Project Placeholder" style="width:100%">
-                    <h4>Future Software Project 2</h4>
-                    <p>This is a placeholder for another upcoming software development project. Expect to see cutting-edge programming techniques and modern development practices.</p>
+                <div class="column it-solutions">
+                    <div class="content" onclick="openModal('modal6')">
+                        <img src="sre-stackimage.PNG" alt="Monitoring">
+                        <h4>Ubuntu Home-Lab Monitoring</h4>
+                        <p>Lightweight solution for Ubuntu Server 24.04 using Prometheus, Node Exporter, and Grafana.</p>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-    <!-- END MAIN-->
+                <div class="column it-solutions">
+                    <div class="content" onclick="openModal('modal5')">
+                        <img src="sre flowchart.PNG" alt="Orchestrator">
+                        <h4>Homelab Orchestrator</h4>
+                        <p>Automated SRE monitoring stack featuring Prometheus, Grafana, and Elasticsearch via Ansible.</p>
+                    </div>
+                </div>
+
+                <div class="column softwares">
+                    <div class="content" onclick="openModal('modal8')">
+                        <img src="Ticketing system.PNG" alt="Ticketing">
+                        <h4>School IT Ticketing System</h4>
+                        <p>Web-based helpdesk application built with Flask for managing support requests in schools.</p>
+                    </div>
+                </div>
+
+                <div class="column softwares">
+    <div class="content" onclick="openModal('modal7')">
+        <img src="Agriconnect.png" alt="Agriconnect.png">
+        <h4>Agriconnect</h4>
+        <p>A digital ecosystem built with javascript to bridge the gap between farmers and markets through real-time data.</p>
     </div>
+</div>
+
+<div class="column softwares">
+    <div class="content" onclick="openModal('modal10')">
+        <img src="missing_person.png" alt="Missing Person App">
+        <h4>Missing Person Locator</h4>
+        <p>A community-driven portal utilizing Flask and geolocation to help track and report missing persons efficiently.</p>
+    </div>
+</div>
+
+<div class="column softwares">
+    <div class="content" onclick="openModal('modal9')">
+        <img src="ubuntudev1.PNG" alt="Ubuntu Dev Manager">
+        <h4>Ubuntu Dev Manager</h4>
+        <p>A specialized utility for managing Linux development environments, optimizing workflows for Ubuntu-based workstations.</p>
+    </div>
+</div>
+
+                <div class="column it-solutions">
+                    <div class="content" onclick="openModal('modal11')">
+                        <img src="archidetect.jpg" alt="Archidetect">
+                        <h4>Archidetect</h4>
+                        <p>AI-powered CLI tool for diagnosing Arch Linux errors using local LLMs via Ollama.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!--==================== SCROLL TOP ====================-->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class="uil uil-angle-double-up scrollup__icon"></i>
+    </a>
+
     <!-- Modal 4: CCTV AI System -->
     <div id="modal4" class="modal">
         <div class="modal-content">
@@ -343,10 +234,11 @@
             
             <div class="modal-images">
                 <img src="cctv-a-s.PNG" alt="CCTV AI System Interface" class="modal-image" onclick="viewFullImage('cctv-a-s.PNG')">
-                <img src="cctv2.PNG" alt="Face Detection Feature" class="modal-image" onclick="viewFullImage('cctv-detection.PNG')">
-                <img src="cctv3.jpg" alt="Mobile Alert System" class="modal-image" onclick="viewFullImage('cctv-alerts.PNG')">
-                
-            
+                <img src="cctv2.PNG" alt="Face Detection Feature" class="modal-image" onclick="viewFullImage('cctv2.PNG')">
+                <img src="cctv3.jpg" alt="Mobile Alert System" class="modal-image" onclick="viewFullImage('cctv3.jpg')">
+
+            </div>
+
             <div class="modal-content-text">
                 <h3>Project Overview</h3>
                 <p>The CCTV AI System is a cutting-edge, AI-powered security monitoring solution that transforms traditional CCTV surveillance into an intelligent, automated security system. Built with Python and modern computer vision technologies, this system provides real-time face detection, personnel recognition, and instant mobile alerts for comprehensive security management.</p>
@@ -398,17 +290,17 @@
             <span class="modal-close" onclick="closeModal('modal3')">&times;</span>
             <h2 class="modal-title">Agriexpert System</h2>
             <div class="modal-meta">2023 • Software Development • Expert System, Agricultural Technology</div>
-            
+
             <div class="modal-images">
                 <img src="agriexpert1.png" alt="Expert System Interface" class="modal-image" onclick="viewFullImage('agriexpert1.png')">
                 <img src="agriexpert 2.png" alt="Expert System Features" class="modal-image" onclick="viewFullImage('agriexpert 2.png')">
                 <img src="agriexpert3.png" alt="Expert System Dashboard" class="modal-image" onclick="viewFullImage('agriexpert3.png')">
             </div>
-            
+
             <div class="modal-content-text">
                 <h3>Project Overview</h3>
                 <p>Agriexpert is a rule-based expert system developed as part of a BscIT coursework group project. The system is designed to deliver sustainable and personalized agricultural guidance to smallholder farmers in Kenya, helping them make informed decisions about their farming practices.</p>
-                
+
                 <h3>Key Features</h3>
                 <ul>
                     <li>Rule-based decision making for agricultural recommendations</li>
@@ -417,13 +309,524 @@
                     <li>Fertilizer and irrigation scheduling assistance</li>
                     <li>Seasonal planning and crop rotation advice</li>
                 </ul>
-                
+
                 <h3>Technology Stack</h3>
                 <ul>
                     <li>Expert system development framework</li>
                     <li>Knowledge base management system</li>
                     <li>User interface for farmer interactions</li>
                     <li>Database for storing agricultural knowledge and user data</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 5: Homelab Orchestrator -->
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal5')">&times;</span>
+            <h2 class="modal-title">Homelab Orchestrator</h2>
+            <div class="modal-meta">2024 • IT Infrastructure • Ansible, Docker, Prometheus, Grafana, Elasticsearch</div>
+
+            <div class="modal-images">
+                <img src="sre-stackimage.PNG" alt="Homelab Infrastructure" class="modal-image" onclick="viewFullImage('sre-stackimage.PNG')">
+            </div>
+
+            <div class="modal-content-text">
+                <h3>Project Overview</h3>
+                <p>The Homelab Orchestrator is an automated SRE (Site Reliability Engineering) monitoring stack designed for homelab environments. It features a comprehensive monitoring solution with Prometheus, Grafana, and Elasticsearch, all deployed and managed via Ansible and Docker for seamless infrastructure automation.</p>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Automated Deployment:</strong> Infrastructure as Code using Ansible playbooks</li>
+                    <li><strong>Monitoring Stack:</strong> Prometheus for metrics collection, Grafana for visualization</li>
+                    <li><strong>Service Discovery:</strong> Automatic detection and monitoring of services</li>
+                    <li><strong>Reverse Proxy:</strong> Nginx Proxy Manager for secure external access</li>
+                    <li><strong>Network Services:</strong> Pi-hole for ad-blocking and DNS management</li>
+                    <li><strong>Container Management:</strong> Portainer for Docker container orchestration</li>
+                    <li><strong>Uptime Monitoring:</strong> Blackbox exporter for external service probing</li>
+                </ul>
+
+                <h3>Technology Stack</h3>
+                <ul>
+                    <li><strong>Ansible:</strong> Configuration management and automation</li>
+                    <li><strong>Docker:</strong> Containerization platform</li>
+                    <li><strong>Prometheus:</strong> Metrics collection and alerting</li>
+                    <li><strong>Grafana:</strong> Data visualization and dashboards</li>
+                    <li><strong>Elasticsearch:</strong> Log aggregation and analysis</li>
+                    <li><strong>Nginx Proxy Manager:</strong> Reverse proxy and SSL management</li>
+                    <li><strong>Node Exporter:</strong> System metrics exporter</li>
+                </ul>
+
+                <h3>System Architecture</h3>
+                <ul>
+                    <li>Ingress layer with Nginx Proxy Manager for traffic control</li>
+                    <li>Observability layer with Prometheus, Grafana, and exporters</li>
+                    <li>Services layer including Pi-hole, Homepage, and Portainer</li>
+                    <li>Data persistence with Docker volumes</li>
+                </ul>
+
+                <h3>Applications</h3>
+                <ul>
+                    <li>Homelab infrastructure monitoring and management</li>
+                    <li>Automated deployment of self-hosted services</li>
+                    <li>Network-wide ad-blocking and DNS filtering</li>
+                    <li>Container orchestration and management</li>
+                    <li>Comprehensive logging and metrics analysis</li>
+                </ul>
+
+                <h3>System Capabilities</h3>
+                <ul>
+                    <li>One-command deployment via Ansible</li>
+                    <li>Real-time monitoring dashboards</li>
+                    <li>Automated alerting and notifications</li>
+                    <li>Scalable architecture for homelab growth</li>
+                    <li>Secure external access with SSL termination</li>
+                    <li>Centralized logging with Elasticsearch</li>
+                </ul>
+
+                <h3>GitHub Repository</h3>
+                <p>Explore the complete source code, documentation, and deployment instructions: <a href="https://github.com/Jim-Karanja/homelab-orchestrator" target="_blank" style="color: var(--first-color);">https://github.com/Jim-Karanja/homelab-orchestrator</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 6: Ubuntu Home-Lab Monitoring Stack -->
+    <div id="modal6" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal6')">&times;</span>
+            <h2 class="modal-title">Ubuntu Home-Lab Monitoring Stack</h2>
+            <div class="modal-meta">2024 • IT Infrastructure • Docker, Prometheus, Grafana, Python</div>
+
+            <div class="modal-images">
+                <img src="https://github.com/user-attachments/assets/a811f8fb-2a78-439e-81f8-0190f7ed22fb" alt="Grafana Dashboard" class="modal-image" onclick="viewFullImage('https://github.com/user-attachments/assets/a811f8fb-2a78-439e-81f8-0190f7ed22fb')">
+                <img src="https://github.com/user-attachments/assets/67033a8f-87f2-4273-b63f-18f356a14270" alt="System Metrics" class="modal-image" onclick="viewFullImage('https://github.com/user-attachments/assets/67033a8f-87f2-4273-b63f-18f356a14270')">
+            </div>
+
+            <div class="modal-content-text">
+                <h3>Project Overview</h3>
+                <p>The Ubuntu Home-Lab Monitoring Stack is a lightweight, containerized monitoring solution designed for Ubuntu Server 24.04. This project provides comprehensive system monitoring using Prometheus to collect metrics via Node Exporter and visualizes them through interactive Grafana dashboards.</p>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Real-time Monitoring:</strong> Track CPU, Memory, and Disk usage with 15s refresh rates</li>
+                    <li><strong>Network Analysis:</strong> Monitor inbound and outbound traffic spikes</li>
+                    <li><strong>Auto-Start:</strong> Configured with Docker restart policies to launch on system boot</li>
+                    <li><strong>Remote Access:</strong> Securely accessible via Cloudflare Tunnels without opening router ports</li>
+                    <li><strong>Infrastructure as Code:</strong> Entire monitoring stack deployed via Docker Compose</li>
+                    <li><strong>Automated Diagnostics:</strong> Python-based health check script for CLI status reports</li>
+                    <li><strong>Real-time Alerts:</strong> Grafana configured with Discord Webhooks for instant alerts</li>
+                    <li><strong>Daily Reports:</strong> Cron job executes health checks daily at 08:00 via Discord</li>
+                </ul>
+
+                <h3>Technology Stack</h3>
+                <ul>
+                    <li><strong>Ubuntu Server 24.04:</strong> Base operating system (Noble Numbat)</li>
+                    <li><strong>Docker & Docker Compose:</strong> Containerization and orchestration</li>
+                    <li><strong>Prometheus:</strong> Metrics collection and time-series database</li>
+                    <li><strong>Node Exporter:</strong> System metrics exporter</li>
+                    <li><strong>Grafana:</strong> Data visualization and dashboarding</li>
+                    <li><strong>Python:</strong> Health check scripting and automation</li>
+                    <li><strong>Cloudflare Tunnels:</strong> Secure remote access solution</li>
+                </ul>
+
+                <h3>System Architecture</h3>
+                <ul>
+                    <li>Containerized deployment with Docker Compose</li>
+                    <li>Prometheus scraping Node Exporter metrics</li>
+                    <li>Grafana querying Prometheus for visualizations</li>
+                    <li>Automated health checks via Python scripts</li>
+                    <li>Discord integration for notifications and reports</li>
+                </ul>
+
+                <h3>Applications</h3>
+                <ul>
+                    <li>Homelab server monitoring and performance tracking</li>
+                    <li>Network traffic analysis and anomaly detection</li>
+                    <li>Automated system health reporting</li>
+                    <li>Remote infrastructure management</li>
+                    <li>Containerized service orchestration</li>
+                </ul>
+
+                <h3>System Capabilities</h3>
+                <ul>
+                    <li>15-second metric refresh rates for real-time monitoring</li>
+                    <li>Automated startup and recovery with Docker policies</li>
+                    <li>Secure remote access without port forwarding</li>
+                    <li>Webhook-based alerting for critical events</li>
+                    <li>Scheduled daily health summaries</li>
+                    <li>CLI-based diagnostic tools</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 7: Agriconnect -->
+    <div id="modal7" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal7')">&times;</span>
+            <h2 class="modal-title">Agriconnect</h2>
+            <div class="modal-meta">2025 • Software Development • JavaScript, Web Application</div>
+
+            <div class="modal-images">
+                <img src="Agriconnect2.png" alt="Agriconnect Interface" class="modal-image" onclick="viewFullImage('Agriconnect2.png')">
+                <img src="Agricoonect3.png" alt="Agriconnect Features" class="modal-image" onclick="viewFullImage('Agricoonect3.png')">
+                <img src="Agriconnect5.png" alt="Agriconnect Features" class="modal-image" onclick="viewFullImage('Agriconnect5.png')">
+                <img src="Agriconnect6.png" alt="Agriconnect Features" class="modal-image" onclick="viewFullImage('Agriconnect6.png')">
+                <img src="Agriconnect9.png" alt="Agriconnect Features" class="modal-image" onclick="viewFullImage('Agriconnect9.png')">
+                <img src="Agriconnect8.png" alt="Agriconnect AI" class="modal-image" onclick="viewFullImage('Agriconnect8.png')">
+            </div>
+
+            <div class="modal-content-text">
+                <h3>Project Overview</h3>
+                <p>Agriconnect is a web application designed to provide agricultural connectivity and services. Built with modern JavaScript technologies, this platform offers comprehensive solutions for agricultural stakeholders, including farmers, suppliers, and agricultural businesses.</p>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Farmer Connectivity:</strong> Platform for farmers to connect with suppliers and markets</li>
+                    <li><strong>Market Information:</strong> Real-time agricultural market data and pricing</li>
+                    <li><strong>Supply Chain Management:</strong> Tools for managing agricultural supply chains</li>
+                    <li><strong>Resource Sharing:</strong> Community features for knowledge and resource sharing</li>
+                    <li><strong>Mobile Responsive:</strong> Accessible on all devices for field use</li>
+                </ul>
+
+                <h3>Technology Stack</h3>
+                <ul>
+                    <li><strong>JavaScript:</strong> Core programming language</li>
+                    <li><strong>React/Vue.js:</strong> Frontend framework for user interface</li>
+                    <li><strong>Node.js:</strong> Backend runtime environment</li>
+                    <li><strong>Express.js:</strong> Web application framework</li>
+                    <li><strong>MongoDB/PostgreSQL:</strong> Database for data storage</li>
+                    <li><strong>Vercel:</strong> Deployment and hosting platform</li>
+                </ul>
+
+                <h3>Applications</h3>
+                <ul>
+                    <li>Agricultural marketplace and trading platform</li>
+                    <li>Farm management and planning tools</li>
+                    <li>Agricultural information and advisory services</li>
+                    <li>Supply chain optimization for agricultural products</li>
+                    <li>Community building for agricultural stakeholders</li>
+                </ul>
+
+                <h3>System Capabilities</h3>
+                <ul>
+                    <li>User-friendly web interface for easy navigation</li>
+                    <li>Real-time data updates and notifications</li>
+                    <li>Secure user authentication and data protection</li>
+                    <li>Scalable architecture for growing user base</li>
+                    <li>Integration with external agricultural APIs</li>
+                    <li>Comprehensive reporting and analytics features</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 8: School IT Ticketing System -->
+    <div id="modal8" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal8')">&times;</span>
+            <h2 class="modal-title">School IT Ticketing System</h2>
+            <div class="modal-meta">2025 • Software Development • Python, Flask, Web Application</div>
+
+            <div class="modal-images">
+                <img src="Ticketing system.PNG" alt="Ticketing System Interface" class="modal-image" onclick="viewFullImage('Ticketing system.PNG')">
+            
+            </div>
+
+            <div class="modal-content-text">
+                <h3>Project Overview</h3>
+                <p>The School IT Ticketing System is a web-based helpdesk application built with Flask for managing IT support requests in educational institutions. It provides a streamlined workflow for students, teachers, and staff to submit IT issues and for IT personnel to efficiently manage and resolve tickets.</p>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Public Ticket Submission:</strong> User-friendly form for reporting IT issues</li>
+                    <li><strong>Email Notifications:</strong> Automated notifications for ticket updates</li>
+                    <li><strong>IT Staff Dashboard:</strong> Secure interface for ticket management</li>
+                    <li><strong>Ticket Status Tracking:</strong> Complete workflow from submission to resolution</li>
+                    <li><strong>Remote Desktop Support:</strong> Integration with AnyDesk for remote assistance</li>
+                    <li><strong>Ticket History:</strong> Timestamped notes and status updates</li>
+                </ul>
+
+                <h3>Technology Stack</h3>
+                <ul>
+                    <li><strong>Python:</strong> Core programming language</li>
+                    <li><strong>Flask:</strong> Web framework for application development</li>
+                    <li><strong>SQLAlchemy:</strong> Database ORM for data management</li>
+                    <li><strong>SQLite:</strong> Database engine (upgradeable to PostgreSQL/MySQL)</li>
+                    <li><strong>Flask-Mail:</strong> Email functionality via SMTP</li>
+                    <li><strong>HTML/CSS/JavaScript:</strong> Frontend technologies</li>
+                    <li><strong>AnyDesk:</strong> Remote desktop support integration</li>
+                </ul>
+
+                <h3>System Architecture</h3>
+                <ul>
+                    <li>Flask-based web application with MVC structure</li>
+                    <li>SQLite database with SQLAlchemy ORM</li>
+                    <li>Email notification system with Flask-Mail</li>
+                    <li>Secure IT dashboard with authentication</li>
+                    <li>Responsive frontend with clean UI design</li>
+                </ul>
+
+                <h3>Applications</h3>
+                <ul>
+                    <li>Educational institution IT support management</li>
+                    <li>Helpdesk operations for schools and universities</li>
+                    <li>IT service management and ticketing workflows</li>
+                    <li>Remote technical support coordination</li>
+                    <li>IT incident tracking and resolution</li>
+                </ul>
+
+                <h3>System Capabilities</h3>
+                <ul>
+                    <li>Multi-user role-based access control</li>
+                    <li>Automated email notifications and updates</li>
+                    <li>Ticket filtering, sorting, and search functionality</li>
+                    <li>Remote desktop assistance workflow</li>
+                    <li>Comprehensive ticket history and audit trail</li>
+                    <li>Scalable database architecture</li>
+                    <li>Production-ready deployment options</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 9: Ubuntu Dev Manager -->
+    <div id="modal9" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal9')">&times;</span>
+            <h2 class="modal-title">Ubuntu Dev Manager</h2>
+            <div class="modal-meta">2025 • IT Infrastructure • Python, Qt, Multipass, LXD</div>
+
+            <div class="modal-images">
+                <img src="ubuntudev1.PNG" alt="Dev Manager Interface" class="modal-image" onclick="viewFullImage('ubuntudev1.PNG')">
+                <img src="ubuntu dev2.PNG" alt="Environment Templates" class="modal-image" onclick="viewFullImage('ubuntu dev2.PNG')">
+                <img src="ubuntudev2.PNG" alt="Resource Management" class="modal-image" onclick="viewFullImage('ubuntudev2.PNG')">
+            </div>
+
+            <div class="modal-content-text">
+                <h3>Project Overview</h3>
+                <p>The Ubuntu Development Environment Manager is a comprehensive GUI tool designed to simplify the creation and management of isolated development environments on Ubuntu Desktop. It leverages Canonical's virtualization technologies (Multipass and LXD) to provide developers with pre-configured, reproducible development environments for various programming languages and frameworks.</p>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Multiple Backend Support:</strong> Works with both Multipass (VMs) and LXD (containers)</li>
+                    <li><strong>Environment Templates:</strong> Pre-configured templates for Node.js, Python, Go, Rust, Java, Docker, and more</li>
+                    <li><strong>Directory Mounting:</strong> Seamless mounting of host directories into guest environments</li>
+                    <li><strong>Resource Management:</strong> Configurable CPU, memory, and disk resources</li>
+                    <li><strong>GUI Interface:</strong> User-friendly Qt-based interface for easy management</li>
+                    <li><strong>Environment Lifecycle:</strong> Complete create, start, stop, and delete operations</li>
+                    <li><strong>Shell Access:</strong> Direct terminal access to running environments</li>
+                </ul>
+
+                <h3>Technology Stack</h3>
+                <ul>
+                    <li><strong>Python:</strong> Core programming language</li>
+                    <li><strong>PyQt5:</strong> GUI framework for the desktop interface</li>
+                    <li><strong>Multipass:</strong> Ubuntu VM management tool</li>
+                    <li><strong>LXD:</strong> System container and VM manager</li>
+                    <li><strong>Ubuntu:</strong> Base operating system (20.04+)</li>
+                    <li><strong>Qt:</strong> Cross-platform GUI toolkit</li>
+                </ul>
+
+                <h3>System Architecture</h3>
+                <ul>
+                    <li>Qt-based GUI application with modular design</li>
+                    <li>Backend abstraction layer for Multipass/LXD operations</li>
+                    <li>Template system for environment configurations</li>
+                    <li>Configuration management with JSON settings</li>
+                    <li>Integration with system terminal emulators</li>
+                </ul>
+
+                <h3>Available Templates</h3>
+                <ul>
+                    <li>Node.js Development Environment</li>
+                    <li>Python Development Environment</li>
+                    <li>Go Development Environment</li>
+                    <li>Rust Development Environment</li>
+                    <li>Java Development Environment</li>
+                    <li>Docker Development Environment</li>
+                    <li>Full Stack Web Development</li>
+                    <li>Data Science Environment</li>
+                    <li>DevOps Environment</li>
+                </ul>
+
+                <h3>Applications</h3>
+                <ul>
+                    <li>Isolated development environment management</li>
+                    <li>Team development environment standardization</li>
+                    <li>Multi-language project development</li>
+                    <li>Educational programming environment setup</li>
+                    <li>DevOps and infrastructure tool testing</li>
+                    <li>Container and virtualization learning</li>
+                </ul>
+
+                <h3>System Capabilities</h3>
+                <ul>
+                    <li>Automatic environment provisioning and configuration</li>
+                    <li>Resource allocation and performance optimization</li>
+                    <li>Directory synchronization between host and guest</li>
+                    <li>Template-based environment customization</li>
+                    <li>Multi-backend virtualization support</li>
+                    <li>Integrated terminal and shell access</li>
+                    <li>Configuration persistence and management</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 10: Missing Persons App -->
+    <div id="modal10" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal10')">&times;</span>
+            <h2 class="modal-title">Missing Persons App</h2>
+            <div class="modal-meta">2025 • Software Development • JavaScript, React, Node.js, PostgreSQL</div>
+
+            <div class="modal-images">
+                <img src="img/placeholder10.jpg" alt="Missing Persons Interface" class="modal-image" onclick="viewFullImage('img/placeholder10.jpg')">
+                <img src="img/placeholder11.jpg" alt="Mobile Application" class="modal-image" onclick="viewFullImage('img/placeholder11.jpg')">
+            </div>
+
+            <div class="modal-content-text">
+                <h3>Project Overview</h3>
+                <p>The Missing Persons App is a comprehensive full-stack management system designed specifically for Kenya to facilitate coordination between law enforcement agencies, NGOs, and the public in locating missing individuals and reuniting families. The system provides a centralized database with web and mobile interfaces for efficient case management and community engagement.</p>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Centralized Database:</strong> National database for all missing persons reports</li>
+                    <li><strong>Mobile Application:</strong> User-friendly interface for reporting and tracking</li>
+                    <li><strong>Real-time Alerts:</strong> GPS-based notifications for community members</li>
+                    <li><strong>Multi-platform Access:</strong> Web and mobile interfaces for different user types</li>
+                    <li><strong>Integration Capabilities:</strong> Works with existing systems (DCI, Kenya Red Cross)</li>
+                    <li><strong>AI-Powered Tools:</strong> Facial recognition and age progression features</li>
+                    <li><strong>Privacy-Compliant:</strong> Adheres to Kenyan data protection laws</li>
+                </ul>
+
+                <h3>Technology Stack</h3>
+                <ul>
+                    <li><strong>JavaScript:</strong> Core programming language</li>
+                    <li><strong>React:</strong> Web frontend framework</li>
+                    <li><strong>React Native:</strong> Mobile application framework</li>
+                    <li><strong>Node.js/Express:</strong> Backend API and services</li>
+                    <li><strong>Python:</strong> AI/ML processing and analytics</li>
+                    <li><strong>PostgreSQL:</strong> Primary database</li>
+                    <li><strong>Redis:</strong> Caching and session management</li>
+                </ul>
+
+                <h3>System Architecture</h3>
+                <ul>
+                    <li>Mobile app (React Native) for public reporting</li>
+                    <li>Web frontend (React) for administrative access</li>
+                    <li>API Gateway (Express.js) for service orchestration</li>
+                    <li>Backend services (Node.js/Python) for business logic</li>
+                    <li>Database layer (PostgreSQL + Redis) for data persistence</li>
+                    <li>Integration layer for external systems and APIs</li>
+                </ul>
+
+                <h3>Key Components</h3>
+                <ul>
+                    <li>Backend API for user authentication and data management</li>
+                    <li>Web frontend with administrative dashboard and search interface</li>
+                    <li>Mobile application with offline capabilities and GPS tracking</li>
+                    <li>Database with user management, case records, and audit trails</li>
+                    <li>AI/ML services for facial recognition and pattern analysis</li>
+                </ul>
+
+                <h3>Applications</h3>
+                <ul>
+                    <li>Law enforcement case management and coordination</li>
+                    <li>NGO and community organization support</li>
+                    <li>Public reporting and awareness campaigns</li>
+                    <li>Family reunification assistance</li>
+                    <li>Crisis response and emergency management</li>
+                    <li>Data analytics for missing persons patterns</li>
+                </ul>
+
+                <h3>System Capabilities</h3>
+                <ul>
+                    <li>End-to-end encryption for sensitive case data</li>
+                    <li>Role-based access control for different user types</li>
+                    <li>Real-time notifications and alert systems</li>
+                    <li>GPS tracking and location-based services</li>
+                    <li>Offline data synchronization for mobile users</li>
+                    <li>Integration with external law enforcement systems</li>
+                    <li>Comprehensive audit trails and reporting</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 11: Archidetect -->
+    <div id="modal11" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal11')">&times;</span>
+            <h2 class="modal-title">Archidetect</h2>
+            <div class="modal-meta">2025 • Software Development • Python, Ollama, AI</div>
+
+            <div class="modal-images">
+                <img src="archidetect.jpg" alt="Archidetect CLI Interface" class="modal-image" onclick="viewFullImage('archidetect.jpg')">
+                <img src="archdetect2.jpg" alt="Error Diagnosis Output" class="modal-image" onclick="viewFullImage('archdetect2.jpg')">
+            </div>
+
+            <div class="modal-content-text">
+                <h3>Project Overview</h3>
+                <p>Archidetect is an AI-powered command-line tool designed to help troubleshoot and resolve Arch Linux errors using locally running language models via Ollama. The tool connects to a local Ollama server and uses models like Mistral to analyze system errors and provide intelligent diagnostic advice and solutions.</p>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>AI-Powered Diagnostics:</strong> Uses local LLMs to analyze Arch Linux errors</li>
+                    <li><strong>Step-by-Step Solutions:</strong> Provides detailed troubleshooting guidance</li>
+                    <li><strong>Local Processing:</strong> Runs entirely offline using local language models</li>
+                    <li><strong>Interactive CLI:</strong> User-friendly command-line interface for error input</li>
+                    <li><strong>Arch Linux Focused:</strong> Specialized knowledge of Arch Linux ecosystem</li>
+                    <li><strong>Command Suggestions:</strong> Recommends specific Arch Linux commands and fixes</li>
+                </ul>
+
+                <h3>Technology Stack</h3>
+                <ul>
+                    <li><strong>Python:</strong> Core programming language (3.7+)</li>
+                    <li><strong>Ollama:</strong> Local LLM server and API</li>
+                    <li><strong>Mistral:</strong> Primary language model for analysis</li>
+                    <li><strong>Requests:</strong> HTTP client for Ollama API communication</li>
+                    <li><strong>Click:</strong> Command-line interface framework</li>
+                </ul>
+
+                <h3>System Architecture</h3>
+                <ul>
+                    <li>CLI application written in Python</li>
+                    <li>Integration with local Ollama server</li>
+                    <li>RESTful API communication for model queries</li>
+                    <li>Structured prompt engineering for Arch Linux expertise</li>
+                    <li>Output formatting for clear diagnostic reports</li>
+                </ul>
+
+                <h3>How It Works</h3>
+                <ul>
+                    <li>User pastes error message into the CLI tool</li>
+                    <li>Tool sends error to local Ollama server with Mistral model</li>
+                    <li>AI analyzes error in context of Arch Linux knowledge</li>
+                    <li>Generates step-by-step troubleshooting guide</li>
+                    <li>Provides specific commands and potential solutions</li>
+                </ul>
+
+                <h3>Applications</h3>
+                <ul>
+                    <li>Arch Linux system troubleshooting and maintenance</li>
+                    <li>Package management error resolution</li>
+                    <li>System configuration problem diagnosis</li>
+                    <li>Boot and startup issue analysis</li>
+                    <li>Dependency conflict resolution</li>
+                    <li>General Linux system administration assistance</li>
+                </ul>
+
+                <h3>System Capabilities</h3>
+                <ul>
+                    <li>Offline operation using local language models</li>
+                    <li>Privacy-preserving (no data sent to external services)</li>
+                    <li>Fast response times with local model inference</li>
+                    <li>Context-aware Arch Linux specific advice</li>
+                    <li>Structured output with clear action items</li>
+                    <li>Extensible prompt system for different error types</li>
                 </ul>
             </div>
         </div>
@@ -479,6 +882,20 @@
         function toggleMobileMenu(icon) {
             icon.classList.toggle("active");
         }
+
+        // Scroll header
+        function scrollHeader() {
+            const nav = document.getElementById('header');
+            if (this.scrollY >= 80) nav.classList.add('scroll-header'); else nav.classList.remove('scroll-header');
+        }
+        window.addEventListener('scroll', scrollHeader);
+
+        // Scroll up
+        function scrollUp() {
+            const scrollUp = document.getElementById('scroll-up');
+            if (this.scrollY >= 560) scrollUp.classList.add('show-scroll'); else scrollUp.classList.remove('show-scroll');
+        }
+        window.addEventListener('scroll', scrollUp);
         
         // Modal Functions
         function openModal(modalId) {
