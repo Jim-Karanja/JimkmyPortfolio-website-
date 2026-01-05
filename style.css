@@ -601,7 +601,37 @@ color: var(--first-color);
 }
 
 /*==================== SERVICES ====================*/
-
+.services__container{
+  gap: 1.5rem;
+}
+.services__content{
+  background-color: var(--container-color);
+  padding: 2rem 1.5rem;
+  border-radius: .5rem;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.services__content:hover{
+  transform: translateY(-5px);
+}
+.services__header{
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--mb-1);
+}
+.services__icon{
+  font-size: 2rem;
+  color: var(--first-color);
+  margin-right: var(--mb-0-75);
+}
+.services__title{
+  font-size: var(--h3-font-size);
+  font-weight: var(--font-medium);
+}
+.services__description{
+  color: var(--text-color);
+  line-height: 1.6;
+}
 
 /* Active Modal */
 
