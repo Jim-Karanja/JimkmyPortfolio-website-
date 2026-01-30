@@ -50,21 +50,125 @@
             }
         }
 
-        * { box-sizing: border-box; padding: 0; margin: 0; }
-        html { scroll-behavior: smooth; }
-        body { margin: var(--header-height) 0 0 0; font-family: var(--body-font); background-color: var(--body-color); color: var(--text-color); }
-        h1, h2, h3, h4 { color: var(--title-color); font-weight: var(--font-semi-bold); }
-        ul { list-style: none; }
-        a { text-decoration: none; }
-        img { max-width: 100%; height: auto; }
+        /* Tablet responsiveness */
+        @media screen and (max-width: 768px) {
+            .main {
+                padding: 1rem;
+            }
+            .portfolio__container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            .modal-content {
+                margin: 5% auto;
+                padding: 1.5rem;
+                max-width: 95%;
+            }
+            .modal-images {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
 
-        /* HEADER */
-        .header { width: 100%; position: fixed; top: 0; left: 0; z-index: var(--z-fixed); background-color: var(--body-color); border-bottom: 1px solid var(--first-color-lighter); }
-        .nav { max-width: 968px; height: calc(var(--header-height) + 1.5rem); display: flex; justify-content: space-between; align-items: center; margin: 0 auto; padding: 0 1rem; }
-        .nav_logo { color: var(--title-color); font-weight: var(--font-medium); font-size: var(--h2-font-size); }
-        .nav_list { display: flex; column-gap: 2rem; }
-        .nav_link { display: flex; flex-direction: column; align-items: center; font-size: var(--small-font-size); color: var(--title-color); }
-        .nav_link:hover { color: var(--first-color); }
+        /* Phone responsiveness */
+        @media screen and (max-width: 480px) {
+            :root {
+                --big-font-size: 1.5rem;
+                --h1-font-size: 1.25rem;
+                --h2-font-size: 1rem;
+                --h3-font-size: 0.875rem;
+                --normal-font-size: 0.875rem;
+                --small-font-size: 0.75rem;
+                --smaller-font-size: 0.688rem;
+            }
+            .main {
+                padding: 0.5rem;
+            }
+            .section__title {
+                margin-bottom: 0.25rem;
+            }
+            .section__subtitle {
+                margin-bottom: 0.5rem;
+            }
+            .section__description {
+                margin-bottom: 1rem;
+            }
+            #myBtnContainer {
+                margin-bottom: 2rem;
+                gap: 0.5rem;
+            }
+            .btn {
+                padding: 8px 12px;
+                font-size: var(--small-font-size);
+            }
+            .portfolio__container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .content {
+                padding: 1rem;
+            }
+            .content img {
+                height: 150px;
+            }
+            .modal-content {
+                margin: 2% auto;
+                padding: 1rem;
+                width: 95%;
+                max-width: none;
+            }
+            .modal-title {
+                font-size: var(--h2-font-size);
+            }
+            .modal-meta {
+                font-size: var(--smaller-font-size);
+            }
+            .modal-images {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 0.5rem;
+            }
+            .modal-content-text h3 {
+                font-size: var(--h3-font-size);
+            }
+            .modal-content-text p, .modal-content-text li {
+                font-size: var(--small-font-size);
+            }
+        }
+
+        /* Extra small screens */
+        @media screen and (max-width: 350px) {
+            .main {
+                padding: 0.25rem;
+            }
+            .portfolio__container {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .content {
+                padding: 0.75rem;
+            }
+            .content img {
+                height: 120px;
+            }
+            .section__title {
+                font-size: var(--h2-font-size);
+                margin-bottom: 0.25rem;
+            }
+            .section__subtitle {
+                margin-bottom: 0.25rem;
+            }
+            .section__description {
+                margin-bottom: 0.5rem;
+            }
+            #myBtnContainer {
+                margin-bottom: 1rem;
+                gap: 0.25rem;
+            }
+            .btn {
+                padding: 6px 10px;
+                font-size: var(--smaller-font-size);
+            }
+        }
+
 
         /* PORTFOLIO LAYOUT */
         .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
@@ -82,8 +186,8 @@
             gap: 2rem;
         }
 
-        .column { display: none; } /* Script handles display */
-        .show { display: block; }
+        .column { display: block; } /* Script handles display */
+        .show { display: block !important; }
 
         .content {
             background-color: var(--container-color);
@@ -91,7 +195,7 @@
             border-radius: 1rem;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
             transition: 0.3s;
-            height: 100%;
+            height: auto;
             display: flex;
             flex-direction: column;
             cursor: pointer;
@@ -122,13 +226,19 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
+    <header class="header" id="header">
+        <nav class="nav container">
             <a href="index.html" class="nav_logo">JimTechnologies <i class="uil uil-circuit"></i></a>
-            <ul class="nav_list">
-                <li><a href="index.html" class="nav_link"><i class="uil uil-estate"></i> Home</a></li>
-                <li><a href="index.html#about" class="nav_link"><i class="uil uil-user-circle"></i> About</a></li>
-            </ul>
+            <div class="nav_menu" id="nav_menu">
+                <ul class="nav_list grid">
+                    <li class="nav_item"><a href="index.html" class="nav_link"><i class="uil uil-estate nav_icon"></i>Home</a></li>
+                    <li class="nav_item"><a href="index.html#about" class="nav_link"><i class="uil uil-user-circle nav_icon"></i>About</a></li>
+                </ul>
+                <i class="uil uil-multiply nav_close" id="nav_close"></i>
+            </div>
+            <div class="nav_btns">
+                <div class="nav_toggle" id="nav_toggle"><i class="uil uil-apps"></i></div>
+            </div>
         </nav>
     </header>
 
@@ -834,14 +944,16 @@
 
     
     <script>
-        filterSelection("all");
         function filterSelection(c) {
             var x, i;
             x = document.getElementsByClassName("column");
             if (c == "all") c = "";
             for (i = 0; i < x.length; i++) {
                 w3RemoveClass(x[i], "show");
-                if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+                // Check if the element contains the class we are filtering for
+                if (x[i].className.indexOf(c) > -1) {
+                    w3AddClass(x[i], "show");
+                }
             }
         }
 
@@ -868,103 +980,66 @@
             element.className = arr1.join(" ");
         }
 
-        // Add active class to the current button (highlight it)
+        // 2. Add 'active' class to the current button
         var btnContainer = document.getElementById("myBtnContainer");
-        var btns = btnContainer.getElementsByClassName("btn");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function() {
-                var current = document.getElementsByClassName("active");
-                current[0].className = current[0].className.replace(" active", "");
-                this.className += " active";
-            });
+        if (btnContainer) {
+            var btns = btnContainer.getElementsByClassName("btn");
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].addEventListener("click", function() {
+                    var current = btnContainer.getElementsByClassName("active");
+                    if (current.length > 0) {
+                        current[0].className = current[0].className.replace(" active", "");
+                    }
+                    this.className += " active";
+                });
+            }
         }
 
-        function toggleMobileMenu(icon) {
-            icon.classList.toggle("active");
-        }
-
-        // Scroll header
-        function scrollHeader() {
-            const nav = document.getElementById('header');
-            if (this.scrollY >= 80) nav.classList.add('scroll-header'); else nav.classList.remove('scroll-header');
-        }
-        window.addEventListener('scroll', scrollHeader);
-
-        // Scroll up
-        function scrollUp() {
-            const scrollUp = document.getElementById('scroll-up');
-            if (this.scrollY >= 560) scrollUp.classList.add('show-scroll'); else scrollUp.classList.remove('show-scroll');
-        }
-        window.addEventListener('scroll', scrollUp);
-        
-        // Modal Functions
+        // 3. Modal Functionality
         function openModal(modalId) {
-            document.getElementById(modalId).style.display = "block";
-            document.body.style.overflow = "hidden"; // Prevent background scrolling
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = "block";
+                document.body.style.overflow = "hidden"; // Prevent scrolling behind modal
+            }
         }
-        
+
         function closeModal(modalId) {
-            document.getElementById(modalId).style.display = "none";
-            document.body.style.overflow = "auto"; // Restore scrolling
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
         }
-        
-        function viewFullImage(imageSrc) {
-            // Create full-screen image viewer
-            const imageViewer = document.createElement('div');
-            imageViewer.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.9);
-                z-index: 2000;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-            `;
-            
-            const fullImage = document.createElement('img');
-            fullImage.src = imageSrc;
-            fullImage.style.cssText = `
-                max-width: 90%;
-                max-height: 90%;
-                object-fit: contain;
-                border-radius: 10px;
-            `;
-            
-            imageViewer.appendChild(fullImage);
-            document.body.appendChild(imageViewer);
-            
-            // Close on click
-            imageViewer.onclick = function() {
-                document.body.removeChild(imageViewer);
-            };
-        }
-        
-        // Close modal when clicking outside of modal content
+
+        // Close modal when clicking outside of it
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = "none";
                 document.body.style.overflow = "auto";
             }
         };
-        
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const modals = document.querySelectorAll('.modal');
-                modals.forEach(modal => {
-                    if (modal.style.display === 'block') {
-                        modal.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                    }
-                });
-            }
-        });
-    </script>
 
-    <script type="text/javascript" src="main.js"></script>
+        // Navigation toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('show-menu');
+            });
+        }
+
+        // Close menu on link click
+        const navLinks = document.querySelectorAll('.nav_link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('show-menu');
+            });
+        });
+
+        filterSelection("all");
+    </script>
+    <script src="main.js"></script>
+
 </body>
 </html>
