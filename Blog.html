@@ -27,26 +27,26 @@
             --z-tooltip: 10;
             --z-fixed: 100;
             --z-modal: 1000;
-            --big-font-size: 2rem;
-            --h1-font-size: 1.5rem;
-            --h2-font-size: 1.25rem;
-            --h3-font-size: 1.125rem;
-            --normal-font-size: .938rem;
-            --small-font-size: .813rem;
-            --smaller-font-size: .75rem;
+            --big-font-size: 2.25rem;
+            --h1-font-size: 1.65rem;
+            --h2-font-size: 1.4rem;
+            --h3-font-size: 1.25rem;
+            --normal-font-size: 1.05rem;
+            --small-font-size: .9rem;
+            --smaller-font-size: .83rem;
             --font-medium: 600;
             --font-semi-bold: 750;
         }
 
         @media screen and (min-width: 968px) {
             :root {
-                --big-font-size: 3rem;
-                --h1-font-size: 2.25rem;
-                --h2-font-size: 1.5rem;
-                --h3-font-size: 1.25rem;
-                --normal-font-size: 1rem;
-                --small-font-size: .875rem;
-                --smaller-font-size: .813rem;
+                --big-font-size: 3.25rem;
+                --h1-font-size: 2.5rem;
+                --h2-font-size: 1.65rem;
+                --h3-font-size: 1.4rem;
+                --normal-font-size: 1.1rem;
+                --small-font-size: .95rem;
+                --smaller-font-size: .875rem;
             }
         }
 
@@ -246,7 +246,7 @@
         <section class="portfolio">
             <h2 class="section__title">My Projects</h2>
             <span class="section__subtitle">Explore my portfolio</span>
-            <p class="section__description">Discover the innovative solutions and technologies I've developed. Click on any project to learn more about the implementation, features, and technologies used.</p>
+            <p class="section__description">Explore the tools I've built to make IT support faster and customers happier — from helpdesk ticketing to AI-driven diagnostics. Click any project for the implementation details and technologies used.</p>
 
             <div id="myBtnContainer">
                 <button class="btn active" onclick="filterSelection('all')">All</button>
@@ -256,8 +256,16 @@
 
             <div class="portfolio__container">
                 <div class="column softwares">
+                    <div class="content" onclick="openModal('modal8')">
+                        <img src="images/Ticketing system.PNG" alt="Ticketing">
+                        <h4>School IT Ticketing System</h4>
+                        <p>Web-based helpdesk application built with Flask for managing IT support requests in schools — built for fast, SLA-driven issue resolution.</p>
+                    </div>
+                </div>
+
+                <div class="column softwares">
                     <div class="content" onclick="openModal('modal4')">
-                        <img src="cctv-a-s.PNG" alt="CCTV AI">
+                        <img src="images/cctv-a-s.PNG" alt="CCTV AI">
                         <h4>CCTV AI System</h4>
                         <p>A cutting-edge, AI-powered security monitoring system that transforms traditional CCTV surveillance into an intelligent solution.</p>
                     </div>
@@ -265,7 +273,7 @@
 
                 <div class="column softwares">
                     <div class="content" onclick="openModal('modal3')">
-                        <img src="agriexpert1.png" alt="Agriexpert">
+                        <img src="images/agriexpert1.png" alt="Agriexpert">
                         <h4>Agriexpert System</h4>
                         <p>A rule-based expert system providing agricultural guidance to smallholder farmers in Kenya.</p>
                     </div>
@@ -273,7 +281,7 @@
 
                 <div class="column it-solutions">
                     <div class="content" onclick="openModal('modal6')">
-                        <img src="sre-stackimage.PNG" alt="Monitoring">
+                        <img src="images/sre-stackimage.PNG" alt="Monitoring">
                         <h4>Ubuntu Home-Lab Monitoring</h4>
                         <p>Lightweight solution for Ubuntu Server 24.04 using Prometheus, Node Exporter, and Grafana.</p>
                     </div>
@@ -281,23 +289,15 @@
 
                 <div class="column it-solutions">
                     <div class="content" onclick="openModal('modal5')">
-                        <img src="sre flowchart.PNG" alt="Orchestrator">
+                        <img src="images/sre flowchart.PNG" alt="Orchestrator">
                         <h4>Homelab Orchestrator</h4>
                         <p>Automated SRE monitoring stack featuring Prometheus, Grafana, and Elasticsearch via Ansible.</p>
                     </div>
                 </div>
 
                 <div class="column softwares">
-                    <div class="content" onclick="openModal('modal8')">
-                        <img src="Ticketing system.PNG" alt="Ticketing">
-                        <h4>School IT Ticketing System</h4>
-                        <p>Web-based helpdesk application built with Flask for managing support requests in schools.</p>
-                    </div>
-                </div>
-
-                <div class="column softwares">
     <div class="content" onclick="openModal('modal7')">
-        <img src="Agriconnect.png" alt="Agriconnect.png">
+        <img src="images/Agriconnect.png" alt="Agriconnect.png">
         <h4>Agriconnect</h4>
         <p>A digital ecosystem built with javascript to bridge the gap between farmers and markets through real-time data.</p>
     </div>
@@ -305,7 +305,7 @@
 
 <div class="column softwares">
     <div class="content" onclick="openModal('modal10')">
-        <img src="missing_person.png" alt="Missing Person App">
+        <img src="images/missing_person.png" alt="Missing Person App">
         <h4>Missing Person Locator</h4>
         <p>A community-driven portal utilizing Flask and geolocation to help track and report missing persons efficiently.</p>
     </div>
@@ -313,7 +313,7 @@
 
 <div class="column softwares">
     <div class="content" onclick="openModal('modal9')">
-        <img src="ubuntudev1.PNG" alt="Ubuntu Dev Manager">
+        <img src="images/ubuntudev1.PNG" alt="Ubuntu Dev Manager">
         <h4>Ubuntu Dev Manager</h4>
         <p>A specialized utility for managing Linux development environments, optimizing workflows for Ubuntu-based workstations.</p>
     </div>
@@ -321,7 +321,7 @@
 
                 <div class="column it-solutions">
                     <div class="content" onclick="openModal('modal11')">
-                        <img src="archidetect.jpg" alt="Archidetect">
+                        <img src="images/archidetect.jpg" alt="Archidetect">
                         <h4>Archidetect</h4>
                         <p>AI-powered CLI tool for diagnosing Arch Linux errors using local LLMs via Ollama.</p>
                     </div>
@@ -343,9 +343,9 @@
             <div class="modal-meta">2024 • Software Development • Python, Computer Vision, AI</div>
             
             <div class="modal-images">
-                <img src="cctv-a-s.PNG" alt="CCTV AI System Interface" class="modal-image" onclick="viewFullImage('cctv-a-s.PNG')">
-                <img src="cctv2.PNG" alt="Face Detection Feature" class="modal-image" onclick="viewFullImage('cctv2.PNG')">
-                <img src="cctv3.jpg" alt="Mobile Alert System" class="modal-image" onclick="viewFullImage('cctv3.jpg')">
+                <img src="images/cctv-a-s.PNG" alt="CCTV AI System Interface" class="modal-image" onclick="viewFullImage('images/cctv-a-s.PNG')">
+                <img src="images/cctv2.PNG" alt="Face Detection Feature" class="modal-image" onclick="viewFullImage('images/cctv2.PNG')">
+                <img src="images/cctv3.jpg" alt="Mobile Alert System" class="modal-image" onclick="viewFullImage('images/cctv3.jpg')">
 
             </div>
 
@@ -402,9 +402,9 @@
             <div class="modal-meta">2023 • Software Development • Expert System, Agricultural Technology</div>
 
             <div class="modal-images">
-                <img src="agriexpert1.png" alt="Expert System Interface" class="modal-image" onclick="viewFullImage('agriexpert1.png')">
-                <img src="agriexpert 2.png" alt="Expert System Features" class="modal-image" onclick="viewFullImage('agriexpert 2.png')">
-                <img src="agriexpert3.png" alt="Expert System Dashboard" class="modal-image" onclick="viewFullImage('agriexpert3.png')">
+                <img src="images/agriexpert1.png" alt="Expert System Interface" class="modal-image" onclick="viewFullImage('images/agriexpert1.png')">
+                <img src="images/agriexpert 2.png" alt="Expert System Features" class="modal-image" onclick="viewFullImage('images/agriexpert 2.png')">
+                <img src="images/agriexpert3.png" alt="Expert System Dashboard" class="modal-image" onclick="viewFullImage('images/agriexpert3.png')">
             </div>
 
             <div class="modal-content-text">
@@ -439,7 +439,7 @@
             <div class="modal-meta">2024 • IT Infrastructure • Ansible, Docker, Prometheus, Grafana, Elasticsearch</div>
 
             <div class="modal-images">
-                <img src="sre-stackimage.PNG" alt="Homelab Infrastructure" class="modal-image" onclick="viewFullImage('sre-stackimage.PNG')">
+                <img src="images/sre-stackimage.PNG" alt="Homelab Infrastructure" class="modal-image" onclick="viewFullImage('images/sre-stackimage.PNG')">
             </div>
 
             <div class="modal-content-text">
@@ -579,12 +579,12 @@
             <div class="modal-meta">2025 • Software Development • JavaScript, Web Application</div>
 
             <div class="modal-images">
-                <img src="Agriconnect2.png" alt="Agriconnect Interface" class="modal-image" onclick="viewFullImage('Agriconnect2.png')">
-                <img src="Agricoonect3.png" alt="Agriconnect Features" class="modal-image" onclick="viewFullImage('Agricoonect3.png')">
-                <img src="Agriconnect5.png" alt="Agriconnect Features" class="modal-image" onclick="viewFullImage('Agriconnect5.png')">
-                <img src="Agriconnect6.png" alt="Agriconnect Features" class="modal-image" onclick="viewFullImage('Agriconnect6.png')">
-                <img src="Agriconnect9.png" alt="Agriconnect Features" class="modal-image" onclick="viewFullImage('Agriconnect9.png')">
-                <img src="Agriconnect8.png" alt="Agriconnect AI" class="modal-image" onclick="viewFullImage('Agriconnect8.png')">
+                <img src="images/Agriconnect2.png" alt="Agriconnect Interface" class="modal-image" onclick="viewFullImage('images/Agriconnect2.png')">
+                <img src="images/Agricoonect3.png" alt="Agriconnect Features" class="modal-image" onclick="viewFullImage('images/Agricoonect3.png')">
+                <img src="images/Agriconnect5.png" alt="Agriconnect Features" class="modal-image" onclick="viewFullImage('images/Agriconnect5.png')">
+                <img src="images/Agriconnect6.png" alt="Agriconnect Features" class="modal-image" onclick="viewFullImage('images/Agriconnect6.png')">
+                <img src="images/Agriconnect9.png" alt="Agriconnect Features" class="modal-image" onclick="viewFullImage('images/Agriconnect9.png')">
+                <img src="images/Agriconnect8.png" alt="Agriconnect AI" class="modal-image" onclick="viewFullImage('images/Agriconnect8.png')">
             </div>
 
             <div class="modal-content-text">
@@ -640,7 +640,7 @@
             <div class="modal-meta">2025 • Software Development • Python, Flask, Web Application</div>
 
             <div class="modal-images">
-                <img src="Ticketing system.PNG" alt="Ticketing System Interface" class="modal-image" onclick="viewFullImage('Ticketing system.PNG')">
+                <img src="images/Ticketing system.PNG" alt="Ticketing System Interface" class="modal-image" onclick="viewFullImage('images/Ticketing system.PNG')">
             
             </div>
 
@@ -709,9 +709,9 @@
             <div class="modal-meta">2025 • IT Infrastructure • Python, Qt, Multipass, LXD</div>
 
             <div class="modal-images">
-                <img src="ubuntudev1.PNG" alt="Dev Manager Interface" class="modal-image" onclick="viewFullImage('ubuntudev1.PNG')">
-                <img src="ubuntu dev2.PNG" alt="Environment Templates" class="modal-image" onclick="viewFullImage('ubuntu dev2.PNG')">
-                <img src="ubuntudev2.PNG" alt="Resource Management" class="modal-image" onclick="viewFullImage('ubuntudev2.PNG')">
+                <img src="images/ubuntudev1.PNG" alt="Dev Manager Interface" class="modal-image" onclick="viewFullImage('images/ubuntudev1.PNG')">
+                <img src="images/ubuntu dev2.PNG" alt="Environment Templates" class="modal-image" onclick="viewFullImage('images/ubuntu dev2.PNG')">
+                <img src="images/ubuntudev2.PNG" alt="Resource Management" class="modal-image" onclick="viewFullImage('images/ubuntudev2.PNG')">
             </div>
 
             <div class="modal-content-text">
@@ -793,8 +793,8 @@
             <div class="modal-meta">2025 • Software Development • JavaScript, React, Node.js, PostgreSQL</div>
 
             <div class="modal-images">
-                <img src="img/placeholder10.jpg" alt="Missing Persons Interface" class="modal-image" onclick="viewFullImage('img/placeholder10.jpg')">
-                <img src="img/placeholder11.jpg" alt="Mobile Application" class="modal-image" onclick="viewFullImage('img/placeholder11.jpg')">
+                <img src="images/placeholder10.jpg" alt="Missing Persons Interface" class="modal-image" onclick="viewFullImage('images/placeholder10.jpg')">
+                <img src="images/placeholder11.jpg" alt="Mobile Application" class="modal-image" onclick="viewFullImage('images/placeholder11.jpg')">
             </div>
 
             <div class="modal-content-text">
@@ -874,8 +874,8 @@
             <div class="modal-meta">2025 • Software Development • Python, Ollama, AI</div>
 
             <div class="modal-images">
-                <img src="archidetect.jpg" alt="Archidetect CLI Interface" class="modal-image" onclick="viewFullImage('archidetect.jpg')">
-                <img src="archdetect2.jpg" alt="Error Diagnosis Output" class="modal-image" onclick="viewFullImage('archdetect2.jpg')">
+                <img src="images/archidetect.jpg" alt="Archidetect CLI Interface" class="modal-image" onclick="viewFullImage('images/archidetect.jpg')">
+                <img src="images/archdetect2.jpg" alt="Error Diagnosis Output" class="modal-image" onclick="viewFullImage('images/archdetect2.jpg')">
             </div>
 
             <div class="modal-content-text">
